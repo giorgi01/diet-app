@@ -1,0 +1,33 @@
+<% if @meal.errors.any? %>
+  <h4>Error was caused by following limits:</h4>
+  <ul>
+    <% @meal.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @meal do |f| %>
+  <p>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+  </p>
+  <p>
+    <%= f.label :time %>
+    <%= f.text_field :time %>
+  </p>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :calories %>
+    <%= f.text_field :calories %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to "Back to meals listing", meals_path %>

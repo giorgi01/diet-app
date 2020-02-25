@@ -1,0 +1,20 @@
+<h1>Showing the requested meal:</h1>
+<p>
+  Date: <%= @meal.date %>
+</p>
+
+<p>
+  Time: <%= @meal.time %>
+</p>
+
+<p>
+  Product: <%= @meal.name %>
+</p>
+
+<p>
+  Calories: <%= @meal.calories %>
+</p>
+
+<%= link_to "Edit this meal", edit_meal_path(@meal) %> |
+
+<%= link_to "Back to meals listing", meals_path %>
