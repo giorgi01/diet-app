@@ -1,4 +1,4 @@
-<h1><%= t('.sign_in') %></h1>
+<h1 style="margin-left: 50px"><%= t('.sign_in') %></h1>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
@@ -12,7 +12,7 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="form-group form-check">
+    <div class="form-group form-check" style="margin-left: 30px">
       <%= f.check_box :remember_me, class: 'form-check-input' %>
       <%= f.label :remember_me, class: 'form-check-label' do %>
         <%= resource.class.human_attribute_name('remember_me') %>
