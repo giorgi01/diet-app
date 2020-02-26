@@ -36,6 +36,7 @@
         <% @user_meals.each do |meal| %>
           <tr>
             <td class="red"><%= meal.date %></td>
+            <td class="red"><%= meal.meal_type %></td>
             <td class="red"><%= meal.name %></td>
             <td class="red"><%= meal.calories %></td>
             <td><%= link_to 'Show', meal_path(meal) %></td>
