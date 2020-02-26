@@ -21,7 +21,7 @@
       </thead>
       <% if current_user.calories_left > 0 %>
       <tbody>
-      <% @user_meals.todays_meals.each do |meal| %>
+      <% @user_meals.each do |meal| %>
         <tr>
           <td class="green"><%= meal.date %></td>
           <td class="green"><%= meal.meal_type %></td>
@@ -54,3 +54,5 @@
     <%= link_to 'Add a meal', new_meal_path %>
     <br>
     <%= link_to 'Change calories daily limit', edit_limit_path %>
+    <br>
+    <%= link_to 'Go to meals history', meals_history_path %>

@@ -3,7 +3,7 @@ class MealsController < ApplicationController
   before_action :set_meal, only: [:show, :destroy, :edit, :update]
 
   def index
-    @user_meals = current_user.meals
+    @user_meals = current_user.meals.todays_meals
   end
 
   def new
@@ -41,6 +41,10 @@ class MealsController < ApplicationController
     @meal.destroy
     flash[:success] = 'Meal was successfully removed'
     redirect_to meals_path
+  end
+
+  def meals_history
+    @user_meals = current_user.meals
   end
 
   private
