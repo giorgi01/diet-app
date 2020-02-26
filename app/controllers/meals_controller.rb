@@ -47,6 +47,17 @@ class MealsController < ApplicationController
     @user_meals = current_user.meals
   end
 
+  def filter_new
+    @filtered_meals = current_user.meals
+  end
+
+  def filter
+    @filtered_meals = current_user.meals.
+        having_date_between(params.require(:filter).permit(:start_date),
+                            params.require(:filter).permit(:end_date))
+    render 'filter'
+  end
+
   private
 
   def set_meal

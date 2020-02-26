@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get 'limit', to: 'users#limit_edit', as: 'edit_limit'
   post 'limit', to: 'users#limit_update'
   get 'history', to: 'meals#meals_history', as: 'meals_history'
+  get 'filter', to: 'meals#filter_new', as: 'filter'
+  post 'filter', to: 'meals#filter'
 end

@@ -15,9 +15,12 @@
   </div>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-      <li class="nav-item" id="log-out">
+        <li class="nav-item" id="log-out">
+          <p><%= current_user.role if current_user.role != 'user' %></p>
+        </li>
+        <li class="nav-item" id="log-out">
         <p><%= link_to 'Log out', destroy_user_session_path, method: :delete %></p>
-      </li>
+        </li>
       <% else %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
