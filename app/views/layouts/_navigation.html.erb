@@ -15,9 +15,15 @@
   </div>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
+        <% if current_user.role == 'manager' %>
         <li class="nav-item" id="log-out">
-          <p><%= current_user.role if current_user.role != 'user' %></p>
+          <p><%= link_to current_user.role.capitalize, manager_path %></p>
         </li>
+          <% elsif current_user.role == 'admin' %>
+          <li class="nav-item" id="log-out">
+            <p><%= link_to current_user.role.capitalize, admin_path %></p>
+          </li>
+        <% end %>
         <li class="nav-item" id="log-out">
         <p><%= link_to 'Log out', destroy_user_session_path, method: :delete %></p>
         </li>
@@ -25,7 +31,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item" id="sign-in">
-        <p><%= link_to 'Sign in', user_session_path%></p>
+        <p><%= link_to 'Sign in', user_session_path %></p>
       </li>
     </ul>
       <% end %>

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :meals
+  has_many :meals, dependent: :delete_all
   enum role: { user: 0, manager: 1, admin: 2 }
 
   def calories_taken

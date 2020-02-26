@@ -27,7 +27,9 @@ class MealsController < ApplicationController
   def update
     if @meal.update(meal_params)
       flash[:success] = 'Meal was successfully updated'
-      redirect_to meals_path
+      redirect_to manager_path if current_user.manager?
+      redirect_to admin_path if current_user.admin?
+      redirect_to meals_path if current_user.user?
     else
       render 'edit'
     end
@@ -40,7 +42,9 @@ class MealsController < ApplicationController
   def destroy
     @meal.destroy
     flash[:success] = 'Meal was successfully removed'
-    redirect_to meals_path
+    redirect_to manager_path if current_user.manager?
+    redirect_to admin_path if current_user.admin?
+    redirect_to meals_path if current_user.user?
   end
 
   def meals_history
