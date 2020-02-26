@@ -13,8 +13,8 @@
     <%= f.text_field :date %>
   </p>
   <p>
-    <%= f.label :time %>
-    <%= f.text_field :time %>
+    <%= f.label :meal_type %>
+    <%= f.select :meal_type, options_for_select(Meal.meal_types) %>
   </p>
   <p>
     <%= f.label :name %>
