@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :require_manager, only: [:manager_panel]
   before_action :require_admin, only: [:admin_panel, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :limit_edit, :limit_update]
 
   def manager_panel
 
@@ -37,11 +37,10 @@ class UsersController < ApplicationController
   end
 
   def limit_edit
-    @user = current_user
+
   end
 
   def limit_update
-    @user = current_user
     if @user.update(limit_params)
       flash[:success] = 'Daily limit was successfully updated'
       redirect_to meals_path

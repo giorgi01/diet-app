@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :edit, :update]
 
-  get 'limit', to: 'users#limit_edit', as: 'edit_limit'
-  post 'limit', to: 'users#limit_update'
+  get 'limit/:id', to: 'users#limit_edit', as: 'edit_limit'
+  post 'limit/:id', to: 'users#limit_update'
   get 'history', to: 'meals#meals_history', as: 'meals_history'
 
   get 'filter', to: 'meals#filter_new', as: 'filter'

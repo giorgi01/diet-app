@@ -54,6 +54,6 @@
 
     <%= link_to 'Add a meal', new_meal_path %>
     <br>
-    <%= link_to 'Change calories daily limit', edit_limit_path %>
+    <%= link_to 'Change calories daily limit', edit_limit_path(current_user) %>
     <br>
     <%= link_to 'Go to meals history', meals_history_path %>
