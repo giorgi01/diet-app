@@ -43,7 +43,14 @@ class UsersController < ApplicationController
   def limit_update
     if @user.update(limit_params)
       flash[:success] = 'Daily limit was successfully updated'
-      redirect_to meals_path
+      case
+      when current_user.manager?
+        redirect_to manager_path
+      when current_user.admin?
+        redirect_to admin_path
+      else
+        redirect_to meals_path
+      end
     else
       render 'limit_edit'
     end
