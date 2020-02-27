@@ -1,24 +1,9 @@
-# README
+## Diet-app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- With this app you can monitor your daily ration to loss weight
 
-Things you may want to cover:
+---
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby version - 2.5.5
+* Rails version - 5.2.4
+* Heroku url: https://diet-app-gt.herokuapp.com/
