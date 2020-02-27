@@ -15,6 +15,29 @@
  */
 @import "bootstrap";
 
+.jumbotron {
+  background-image: asset-url('main.jpg');
+  background-size: cover;
+  margin-top: 30px;
+  height: 500px;
+}
+
+.jumbotron h1 {
+  color: #2e393c;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.jumbotron h2 {
+  color: #13b00f;
+  text-align: center;
+  margin-bottom: 70px;
+  margin-top: 30px;
+}
+
 .form-group {
   padding-left: 50px;
   width: 50%;

@@ -1,9 +1,9 @@
-<div style="margin-left: 40px">
-<h1>Welcome to our Diet App</h1>
-<p>You can calculate your daily calories and loss weight with us</p>
+<div class='center jumbotron' style="margin-left: 40px">
+<h1>Welcome to our Diet-App</h1>
 <% if current_user %>
-    <p><%= link_to 'Your meals', meals_path %></p>
+    <h2><%= link_to 'Your meals', meals_path, class: "btn btn-danger btn-lg btn-xlarge" %></h2>
   <% else %>
-    <p><%= link_to 'Sign in', user_session_path %> | <%= link_to 'Sign up', new_user_registration_path %></p>
+    <h2><%= link_to 'Sign in', user_session_path, class: "btn btn-danger btn-lg btn-xlarge" %> |
+      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-danger btn-lg btn-xlarge" %></h2>
 <% end %>
 </div>
