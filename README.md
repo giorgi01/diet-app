@@ -1,7 +1,6 @@
 ## Diet-app
 
-- With this app you can calculate your daily ration
-- Monitor your daily ration to loss weight
+- With this app you can monitor your daily ration to loss weight
 
 ---
 
