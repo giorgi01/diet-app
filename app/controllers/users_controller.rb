@@ -5,11 +5,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :limit_edit, :limit_update]
 
   def manager_panel
-
+    @meals_all = Meal.paginate(page: params[:page], per_page: 5).all
   end
 
   def admin_panel
-
+    @meals_all = Meal.paginate(page: params[:page], per_page: 5).all
   end
 
   def show

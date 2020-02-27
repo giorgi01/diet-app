@@ -5,6 +5,7 @@
   <div class="col-9">
     <br>
     <% if current_user.user? %>
+      <%= will_paginate @user_meals, :page_links => false %>
     <table class="table table-bordered table-hover">
       <thead>
       <tr>
@@ -30,6 +31,7 @@
        </tbody>
     </table>
     <% else %>
+      <%= will_paginate @meals_all, :page_links => false %>
       <table class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -42,7 +44,7 @@
         </tr>
         </thead>
         <tbody>
-        <% Meal.all.each do |meal| %>
+        <% @meals_all.each do |meal| %>
           <tr>
             <td><%= meal.user.email %></td>
             <td><%= meal.date %></td>

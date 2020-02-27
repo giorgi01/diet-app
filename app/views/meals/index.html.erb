@@ -21,6 +21,7 @@
       </thead>
       <% if current_user.calories_left > 0 %>
       <tbody>
+      <%= will_paginate @user_meals, :page_links => false %>
       <% @user_meals.each do |meal| %>
         <tr>
           <td class="green"><%= meal.date %></td>
@@ -33,6 +34,7 @@
         </tr>
       <% end %>
       <% else %>
+        <%= will_paginate @user_meals, :page_links => false %>
         <% @user_meals.each do |meal| %>
           <tr>
             <td class="red"><%= meal.date %></td>

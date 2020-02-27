@@ -4,7 +4,7 @@ class MealsController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @user_meals = current_user.meals.todays_meals
+    @user_meals = current_user.meals.todays_meals.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -59,17 +59,19 @@ class MealsController < ApplicationController
   end
 
   def meals_history
-    @user_meals = current_user.meals
+    @user_meals = current_user.meals.paginate(page: params[:page], per_page: 5)
+    @meals_all = Meal.all.paginate(page: params[:page], per_page: 5)
   end
 
   def filter_new
-    @filtered_meals = current_user.meals
+    @filtered_meals = current_user.meals.paginate(page: params[:page], per_page: 5)
   end
 
   def filter
     @filtered_meals = current_user.meals.
         having_date_between(params.require(:filter).permit(:start_date),
                             params.require(:filter).permit(:end_date))
+                          .paginate(page: params[:page], per_page: 5)
     render 'filter'
   end
 

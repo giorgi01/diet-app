@@ -14,7 +14,8 @@
       </tr>
       </thead>
         <tbody>
-        <% Meal.all.each do |meal| %>
+        <%= will_paginate @meals_all, :page_links => false %>
+        <% @meals_all.each do |meal| %>
           <tr>
             <td><%= meal.user.email %></td>
             <td><%= meal.date %></td>
