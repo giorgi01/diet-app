@@ -1,0 +1,16 @@
+<h1>Showing the requested user:</h1>
+<p>
+  User: <%= @user.email %>
+</p>
+
+<p>
+  Daily calories: <%= @user.daily_calories %>
+</p>
+
+<p>
+  Date registered: <%= @user.created_at %>
+</p>
+
+<% if !current_user.user? %>
+  <%= link_to 'Edit user', edit_user_path %>
+<% end %>

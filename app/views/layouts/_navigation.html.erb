@@ -17,11 +17,11 @@
       <% if current_user %>
         <% if current_user.role == 'manager' %>
         <li class="nav-item" id="log-out">
-          <p><%= link_to current_user.role.capitalize, manager_path %></p>
+          <p><%= link_to 'Manager panel', manager_path %></p>
         </li>
           <% elsif current_user.role == 'admin' %>
           <li class="nav-item" id="log-out">
-            <p><%= link_to current_user.role.capitalize, admin_path %></p>
+            <p><%= link_to 'Admin panel', admin_path %></p>
           </li>
         <% end %>
         <li class="nav-item" id="log-out">

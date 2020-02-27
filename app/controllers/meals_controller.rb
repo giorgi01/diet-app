@@ -1,6 +1,7 @@
 class MealsController < ApplicationController
 
-  before_action :set_meal, only: [:show, :destroy, :edit, :update]
+  before_action :set_meal, only: [:show, :edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @user_meals = current_user.meals.todays_meals
@@ -27,9 +28,14 @@ class MealsController < ApplicationController
   def update
     if @meal.update(meal_params)
       flash[:success] = 'Meal was successfully updated'
-      redirect_to manager_path if current_user.manager?
-      redirect_to admin_path if current_user.admin?
-      redirect_to meals_path if current_user.user?
+      case
+      when current_user.manager?
+        redirect_to manager_path
+      when current_user.admin?
+        redirect_to admin_path
+      else
+        redirect_to meals_path
+      end
     else
       render 'edit'
     end
@@ -42,9 +48,14 @@ class MealsController < ApplicationController
   def destroy
     @meal.destroy
     flash[:success] = 'Meal was successfully removed'
-    redirect_to manager_path if current_user.manager?
-    redirect_to admin_path if current_user.admin?
-    redirect_to meals_path if current_user.user?
+    case
+    when current_user.manager?
+      redirect_to manager_path
+    when current_user.admin?
+      redirect_to admin_path
+    else
+      redirect_to meals_path
+    end
   end
 
   def meals_history
@@ -70,5 +81,12 @@ class MealsController < ApplicationController
 
   def meal_params
     params.require(:meal).permit(:date, :meal_type, :name, :calories, :user_id)
+  end
+
+  def require_same_user
+    if current_user != @meal.user and !current_user.admin? and !current_user.manager?
+      flash[:notice] = "You can only edit your meals"
+      redirect_to root_path
+    end
   end
 end
