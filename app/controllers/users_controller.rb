@@ -6,15 +6,15 @@ class UsersController < ApplicationController
   before_action :require_staff, only: [:show]
 
   def manager_panel
-    @meals_all = Meal.order(:date).paginate(page: params[:page], per_page: 5).all
+    @meals_all = Meal.order(:date).paginate(page: params[:page], per_page: 5)
   end
 
   def admin_panel
-    @meals_all = Meal.order(:date).paginate(page: params[:page], per_page: 5).all
+    @meals_all = Meal.order(:date).paginate(page: params[:page], per_page: 5)
   end
 
   def show
-
+    @user_meals = @user.meals.order(:date).paginate(page: params[:page], per_page: 5)
   end
 
   def edit
