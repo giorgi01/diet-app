@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   before_action :require_manager, only: [:manager_panel]
   before_action :require_admin, only: [:admin_panel, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :limit_edit, :limit_update]
+  before_action :set_user, only: [:show, :edit, :update, :limit_edit, :limit_update, :toggle_manager]
+  before_action :require_staff, only: [:show]
 
   def manager_panel
     @meals_all = Meal.paginate(page: params[:page], per_page: 5).all
@@ -33,6 +34,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash.notice = "User '#{@user.email}' was deleted"
+    redirect_to admin_path
+  end
+
+  def toggle_manager
+    if @user.manager?
+      @user.user!
+    elsif @user.user?
+      @user.manager!
+    end
     redirect_to admin_path
   end
 
@@ -69,6 +79,13 @@ class UsersController < ApplicationController
     if !current_user.admin?
       redirect_to root_path
       flash[:notice] = 'You are not an admin'
+    end
+  end
+
+  def require_staff
+    if !current_user.admin? and !current_user.manager?
+      redirect_to root_path
+      flash[:notice] = 'You are cannot do that action'
     end
   end
 

@@ -8,8 +8,13 @@
 </p>
 
 <p>
-  Date registered: <%= @user.created_at %>
+  Date registered: <%= @user.created_at.strftime("%F") %>
 </p>
+
+<p>
+  Role: <%= @user.role %>
+</p>
+
 
 <% if !current_user.user? %>
   <%= link_to 'Edit user', edit_user_path %>
