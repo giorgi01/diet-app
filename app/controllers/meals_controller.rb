@@ -60,17 +60,18 @@ class MealsController < ApplicationController
 
   def meals_history
     @user_meals = current_user.meals.paginate(page: params[:page], per_page: 5)
-    @meals_all = Meal.all.paginate(page: params[:page], per_page: 5)
+    @meals_all = Meal.all.order(:date).paginate(page: params[:page], per_page: 5)
   end
 
   def filter_new
-    @filtered_meals = current_user.meals.paginate(page: params[:page], per_page: 5)
+    @filtered_meals = current_user.meals.order(:date).paginate(page: params[:page], per_page: 5)
   end
 
   def filter
     @filtered_meals = current_user.meals.
         having_date_between(params.require(:filter).permit(:start_date),
                             params.require(:filter).permit(:end_date))
+                          .order(:date)
                           .paginate(page: params[:page], per_page: 5)
     render 'filter'
   end
