@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   post 'users/:id/toggle_manager', to: 'users#toggle_manager', as: 'toggle_manager'
+
+  get 'admin/new_user', to: 'users#admin_new_user'
+  post 'admin/new_user', to: 'users#admin_add_user'
 end

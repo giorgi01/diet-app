@@ -46,6 +46,19 @@ class UsersController < ApplicationController
     redirect_to admin_path
   end
 
+  def admin_new_user
+    @user = User.new
+  end
+
+  def admin_add_user
+    if User.create(user_params)
+      flash[:notice] = 'User was successfully added'
+      redirect_to admin_path
+    else
+      render 'admin_new_user'
+    end
+  end
+
   def limit_edit
 
   end
@@ -98,6 +111,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :daily_calories)
+    params.require(:user).permit(:email, :daily_calories, :password)
   end
 end
